@@ -1,20 +1,14 @@
-#!/usr/bin/env rvm 1.9.3-p448@ccg do ruby
-
-puts "FOO FOO"
-puts `rvm current`
-exit 0
-
-=begin
 #!/bin/bash
 
 RVM_RUBY_GEMSET='1.9.3-p448@ccg'
 ERR_STATUS=1
 
 # utility functions
-echoerr() { printf "${@}\n" 1>&2; }
-errexit() { echoerr "$@" ; exit $ERR_STATUS; }
+def echoerr(str) { $stderr.puts(str) }
+def errexit(str) { echoerr str; exit ERR_STATUS; }
 
 # test that environment variable defined
+
 if [[ "${rvm_path}x" == "x" ]]
 then 
     errexit "rvm_path undefined. Please check your PATH and/or install rvm: http://rvm.io"
@@ -34,4 +28,3 @@ fi
 rvm use $RVM_RUBY_GEMSET > /dev/null
 
 exit `ccg-base`
-=end
