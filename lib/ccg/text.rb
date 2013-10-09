@@ -30,15 +30,22 @@ module Ccg
       text = Nyudl::Text::Base.new(dir, prefix, options)
 
       text.analyze
-      Ccg::return_true("Text is valid. No changes required. Thank you for using #$0!") if text.valid?
-      Ccg::return_false("Unrecognized files detected: #{text.errors}") unless text.recognized?
+      if text.valid?
+        puts "Text if valid. No changes required. Thank you for using #$0"
+        return true
+      end
+
+      unless text.recognized?
+        puts "Unrecognized files detected: #{text.errors}"
+        return false
+      end
 
       puts "-------------------------------------------------------------------------------"
       puts "RENAME PLAN"
       puts "-------------------------------------------------------------------------------"
 
-      text.renames.each do |h|
-        printf("%30s   ->   %30s\n", h[old_name:], h[new_name:])
+      text.rename_plan.each do |h|
+        printf("%30s   ->   %30s\n", File.basename(h[:old_name]), File.basename(h[:new_name]))
       end
 
       puts "-------------------------------------------------------------------------------"
@@ -68,6 +75,30 @@ module Ccg
       $stdout.flush
       $stderr.flush
       return true
+    end
+
+    desc "check", "check filenames to see if they comply with known patterns"
+    def fix_names
+      # extract parameters
+      dir    = options[:dir]
+      prefix = options[:prefix]
+      errors = []
+
+      text = Nyudl::Text::Base.new(dir, prefix, options)
+
+      text.analyze
+      if text.valid?
+        puts "All text filenames are recognized and conformant"
+        return true
+      end
+
+      if text.recognized?
+        puts "All filenames recognized, BUT some file are NOT CONFORMANT. OK to upload, renames possible on server."
+        return true
+      else
+        puts "ERROR: CANNOT UPLOAD. UNRECOGNIZED FILES DETECTED: #{text.errors[:unrecognized]}"
+        return false
+      end
     end
 
   end

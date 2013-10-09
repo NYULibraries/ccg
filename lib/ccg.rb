@@ -1,5 +1,6 @@
-require "ccg/version"
-require "ccg/text"
+require_relative "./ccg/version"
+require_relative "./ccg/cli"
+require_relative "./ccg/text"
 
 module Ccg
   def self.exit_ok(msg)
