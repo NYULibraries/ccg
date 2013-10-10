@@ -77,8 +77,11 @@ module Ccg
       return true
     end
 
+    option :dir,        :required => true,  :aliases => :d
+    option :prefix,     :required => true,  :aliases => :p
+
     desc "check", "check filenames to see if they comply with known patterns"
-    def fix_names
+    def check
       # extract parameters
       dir    = options[:dir]
       prefix = options[:prefix]

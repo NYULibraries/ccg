@@ -1,3 +1,4 @@
+require 'thor'
 require_relative './text'
 
 module Ccg

@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
-require 'thor'
-require 'fileutils'
-require 'pp'
 require_relative '../lib/ccg'
 
-Ccg::CLI.start(ARGV)
+result = Ccg::CLI.start(ARGV)
+exit (result ? 0 : 1)
 
 

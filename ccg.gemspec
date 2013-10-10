@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "fakefs"
+  spec.add_development_dependency "simplecov"
 
   spec.add_dependency "thor", "~> 0.18.1"
   spec.add_dependency "nyudl-text", "~> 0.0.1"
