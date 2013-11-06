@@ -31,7 +31,7 @@ module Ccg
 
       text.analyze
       if text.valid?
-        puts "Text if valid. No changes required. Thank you for using #$0"
+        puts "Text is valid. No changes required. Thank you for using #$0"
         return true
       end
 
@@ -91,15 +91,16 @@ module Ccg
 
       text.analyze
       if text.valid?
-        puts "All text filenames are recognized and conformant"
+        puts "#{dir} : All text filenames are recognized and conformant"
         return true
       end
 
       if text.recognized?
-        puts "All filenames recognized, BUT some file are NOT CONFORMANT. OK to upload, renames possible on server."
+        puts "#{dir} All filenames recognized, but some filenames are not conformant. Rename is possible."
         return true
       else
-        puts "ERROR: CANNOT UPLOAD. UNRECOGNIZED FILES DETECTED: #{text.errors[:unrecognized]}"
+        puts "#{dir} : ERROR: UNRECOGNIZED FILES DETECTED:"
+        text.errors[:unrecognized].each { |e| puts "#{dir} : ERROR: #{e}" }
         return false
       end
     end
