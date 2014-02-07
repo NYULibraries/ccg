@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov"
 
   spec.add_dependency "thor", "~> 0.18.1"
-  spec.add_dependency "nyudl-text", "~> 0.0.1"
+  spec.add_dependency "nyudl-text", "~> 0.0.5"
 end
