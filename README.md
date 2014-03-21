@@ -4,19 +4,10 @@ A command-line tool suite for working with digital objects
 created by the NYU DLTS Content Creation Group (CCG).
 
 
-## Installation
+## Current Status
 
-Add this line to your application's Gemfile:
+### *UNDER DEVELOPMENT*
 
-    gem 'ccg'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install ccg
 
 ## Usage
 
